@@ -29,12 +29,18 @@ const ChatView = () => {
     }
   };
 
+  const handleNewChat = () => {
+    setMessages([{ role: 'coach', text: 'Hello! I am your Saathi AI Coach. How can I help you with your classes today?', time: 'Just now' }]);
+  };
+
   return (
     <div className="flex h-[calc(100vh-200px)] border border-gray-200 rounded-lg overflow-hidden bg-white">
       {/* Sidebar (hidden on mobile) */}
       <div className="w-64 bg-gray-50 border-r border-gray-200 hidden md:flex flex-col">
         <div className="p-4 border-b border-gray-200">
-          <button className="w-full btn-outline py-2">New Chat</button>
+          <button onClick={handleNewChat} className="w-full btn-outline py-2 hover:bg-[var(--color-primary)] hover:text-white transition-colors">
+            New Chat
+          </button>
         </div>
         <div className="overflow-y-auto p-2">
           <div className="p-3 bg-white rounded-md border border-gray-200 cursor-pointer mb-2">
