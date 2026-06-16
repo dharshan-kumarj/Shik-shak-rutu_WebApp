@@ -1,0 +1,31 @@
+export const translations = {
+  en: {
+    nav_timeline: "Growth Timeline",
+    nav_journal: "Reflection Journal",
+    nav_resources: "Resource Shelf",
+    nav_chat: "Deep Coaching",
+    nav_groups: "Peer Groups",
+    profile_change_language: "Change Language",
+    profile_logout: "Logout",
+    register_now: "Register Now",
+    sign_in: "Sign In",
+    tagline_hero: "30 Days That Transform How You Teach",
+    tagline_sub: "Personalized coaching for every Indian teacher, in your language, on your phone — starting the moment your DIKSHA training ends.",
+    choose_language: "Choose Your Language | अपनी भाषा चुनें",
+  },
+  hi: {
+    nav_timeline: "विकास समयरेखा",
+    nav_journal: "चिंतन पत्रिका",
+    nav_resources: "संसाधन शेल्फ",
+    nav_chat: "गहन कोचिंग",
+    nav_groups: "सहकर्मी समूह",
+    profile_change_language: "भाषा बदलें",
+    profile_logout: "लॉग आउट",
+    register_now: "अभी पंजीकरण करें",
+    sign_in: "साइन इन करें",
+    tagline_hero: "30 दिन जो आपके पढ़ाने का तरीका बदल देंगे",
+    tagline_sub: "हर भारतीय शिक्षक के लिए व्यक्तिगत कोचिंग, आपकी भाषा में।",
+    choose_language: "अपनी भाषा चुनें",
+  },
+  // Add placeholders for others if needed
+};
