@@ -7,6 +7,10 @@ const ChatView = () => {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [chatHistory, setChatHistory] = useState([
+    { id: '1', title: 'How to handle disruptive...', date: 'Yesterday' },
+    { id: '2', title: 'NCERT guidelines for Math', date: 'May 12' }
+  ]);
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +34,15 @@ const ChatView = () => {
   };
 
   const handleNewChat = () => {
+    if (messages.length > 1) {
+      // Save current chat to history
+      const newHistoryItem = {
+        id: Date.now().toString(),
+        title: messages[1].text.substring(0, 30) + '...',
+        date: 'Today'
+      };
+      setChatHistory([newHistoryItem, ...chatHistory]);
+    }
     setMessages([{ role: 'coach', text: 'Hello! I am your Saathi AI Coach. How can I help you with your classes today?', time: 'Just now' }]);
   };
 
@@ -39,18 +52,16 @@ const ChatView = () => {
       <div className="w-64 bg-gray-50 border-r border-gray-200 hidden md:flex flex-col">
         <div className="p-4 border-b border-gray-200">
           <button onClick={handleNewChat} className="w-full btn-outline py-2 hover:bg-[var(--color-primary)] hover:text-white transition-colors">
-            New Chat
+            + New Chat
           </button>
         </div>
         <div className="overflow-y-auto p-2">
-          <div className="p-3 bg-white rounded-md border border-gray-200 cursor-pointer mb-2">
-            <p className="text-sm text-gray-800 font-medium truncate">How to handle disruptive...</p>
-            <p className="text-xs text-gray-500 mt-1">Yesterday</p>
-          </div>
-          <div className="p-3 hover:bg-gray-100 rounded-md cursor-pointer mb-2">
-            <p className="text-sm text-gray-800 truncate">NCERT guidelines for Math</p>
-            <p className="text-xs text-gray-500 mt-1">May 12</p>
-          </div>
+          {chatHistory.map(chat => (
+            <div key={chat.id} className="p-3 hover:bg-gray-100 rounded-md cursor-pointer mb-2 border border-transparent hover:border-gray-200">
+              <p className="text-sm text-gray-800 font-medium truncate">{chat.title}</p>
+              <p className="text-xs text-gray-500 mt-1">{chat.date}</p>
+            </div>
+          ))}
         </div>
       </div>
 
