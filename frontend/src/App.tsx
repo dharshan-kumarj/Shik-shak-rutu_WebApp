@@ -15,27 +15,40 @@ import LanguageSelectPage from './pages/LanguageSelectPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './components/profile/ProfilePage';
 
+// Simulation pages
+import { TeacherProvider } from './context/TeacherContext';
+import Layout from './components/Layout';
+import WhatsAppPage from './components/WhatsAppPage';
+import CallPage from './components/CallPage';
+
 function App() {
   return (
     <BrowserRouter>
       <LanguageProvider>
         <AuthProvider>
-          <Toaster position="top-center" />
-          <Routes>
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/signin" element={<SignInPage />} />
-              <Route path="/language-select" element={<LanguageSelectPage />} />
-            </Route>
+          <TeacherProvider>
+            <Toaster position="top-center" />
+            <Routes>
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/signin" element={<SignInPage />} />
+                <Route path="/language-select" element={<LanguageSelectPage />} />
+              </Route>
 
-            <Route element={<AppLayout />}>
-              <Route path="/dashboard/*" element={<DashboardPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </Route>
-            
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+              <Route element={<AppLayout />}>
+                <Route path="/dashboard/*" element={<DashboardPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Route>
+
+              <Route element={<Layout />}>
+                <Route path="/whatsapp" element={<WhatsAppPage />} />
+                <Route path="/call" element={<CallPage />} />
+              </Route>
+              
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </TeacherProvider>
         </AuthProvider>
       </LanguageProvider>
     </BrowserRouter>
