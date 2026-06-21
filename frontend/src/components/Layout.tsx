@@ -1,7 +1,21 @@
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet, useLocation } from "react-router-dom"
+import { useEffect } from "react"
+import { useTeacher } from "../context/TeacherContext"
+import { TEACHERS } from "../data/mockData"
 import PersonaSwitcher from "./PersonaSwitcher"
 
 export default function Layout() {
+  const location = useLocation()
+  const { setActiveTeacher } = useTeacher()
+
+  useEffect(() => {
+    const teacherId = (location.state as { teacherId?: number } | null)?.teacherId
+    if (teacherId) {
+      const teacher = TEACHERS.find(t => t.id === teacherId)
+      if (teacher) setActiveTeacher(teacher)
+    }
+  }, [location.state])
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">

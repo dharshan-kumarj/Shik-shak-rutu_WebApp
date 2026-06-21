@@ -98,7 +98,21 @@ const SignInPage = () => {
           </button>
         </div>
 
-        <p className="mt-8 text-center text-sm text-gray-600">
+        <div className="mt-6 flex items-center justify-center">
+          <div className="h-px bg-gray-300 flex-grow"></div>
+          <span className="px-3 text-sm text-gray-500">or</span>
+          <div className="h-px bg-gray-300 flex-grow"></div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => navigate('/demo')}
+          className="mt-2 w-full border border-gray-300 text-gray-700 rounded-md font-medium py-2 text-sm flex justify-center items-center gap-2 hover:bg-gray-50 transition-colors"
+        >
+          🎯 Try Demo — No login needed
+        </button>
+
+        <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account? <Link to="/register" className="text-[var(--color-accent)] font-medium hover:underline">Register</Link>
         </p>
       </div>
