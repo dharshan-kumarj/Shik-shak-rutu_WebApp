@@ -1,5 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import api from '../api/client';
+import { createContext, useState, useEffect, type ReactNode } from 'react';
 
 type User = {
   fullName: string;

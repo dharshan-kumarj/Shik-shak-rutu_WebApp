@@ -1,5 +1,3 @@
-import React from 'react';
-
 const GovernmentFooter = () => {
   return (
     <footer className="bg-gray-100 border-t border-gray-300 py-6 px-4 text-center text-sm text-gray-600 mt-auto">

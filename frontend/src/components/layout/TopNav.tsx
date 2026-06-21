@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useAuth } from '../../hooks/useAuth';
-import { Activity, BookOpen, Layers, MessageCircle, Users, User } from 'lucide-react';
+import { Activity, BookOpen, Layers, MessageCircle, Users } from 'lucide-react';
 
 const TopNav = () => {
   const { t } = useLanguage();

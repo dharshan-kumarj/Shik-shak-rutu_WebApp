@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import api from '../../api/client';
 import toast from 'react-hot-toast';
 
@@ -21,7 +21,7 @@ const JournalView = () => {
     fetchJournal();
   }, []);
 
-  const handlePlayback = (e: React.MouseEvent, entry: any) => {
+  const handlePlayback = (e: MouseEvent) => {
     e.stopPropagation();
     toast("Playing audio reflection...", { icon: '▶️', duration: 3000 });
   };
@@ -59,7 +59,7 @@ const JournalView = () => {
           </div>
           
           <div className="mt-8 pt-4 border-t border-gray-100 flex justify-end">
-            <button onClick={(e) => handlePlayback(e, activeEntry)} className="btn-primary flex items-center gap-2">
+            <button onClick={(e) => handlePlayback(e)} className="btn-primary flex items-center gap-2">
               ▶ Play Audio Reflection
             </button>
           </div>
@@ -101,7 +101,7 @@ const JournalView = () => {
             </div>
             <div className="flex justify-between items-center border-t border-gray-100 pt-3 mt-auto">
               <span className="text-[var(--color-primary)] text-sm font-medium">View Full Entry</span>
-              <button onClick={(e) => handlePlayback(e, entry)} className="text-[var(--color-accent)] text-sm font-medium hover:underline flex items-center gap-1">
+              <button onClick={(e) => handlePlayback(e)} className="text-[var(--color-accent)] text-sm font-medium hover:underline flex items-center gap-1">
                 ▶ Playback
               </button>
             </div>

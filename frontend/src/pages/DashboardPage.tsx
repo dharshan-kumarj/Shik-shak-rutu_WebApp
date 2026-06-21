@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import TimelineView from '../components/timeline/TimelineView';
 import JournalView from '../components/journal/JournalView';

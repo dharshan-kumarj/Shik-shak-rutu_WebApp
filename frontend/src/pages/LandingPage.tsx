@@ -1,10 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../hooks/useLanguage';
 
 const LandingPage = () => {
-  const { t } = useLanguage();
-
   return (
     <div className="bg-[var(--color-background)] pb-12">
       {/* Section 1 - Hero */}
