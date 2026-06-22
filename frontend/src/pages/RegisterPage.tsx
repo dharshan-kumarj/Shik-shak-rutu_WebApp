@@ -29,8 +29,34 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex justify-center px-4 py-12 bg-gray-50">
-      <div className="w-full max-w-2xl card shadow-xl border border-gray-100">
+    <div className="min-h-[calc(100vh-140px)] flex gap-6 px-4 py-12 bg-gray-50">
+      {/* Demo Info Sidebar */}
+      <div className="hidden lg:flex lg:w-1/3 flex-col gap-6">
+        <div className="card shadow-lg border border-gray-100 bg-blue-50 border-blue-200 p-6 rounded-lg h-fit sticky top-20">
+          <h3 className="text-lg font-bold text-blue-900 mb-4">🎯 Demo Credentials</h3>
+          <p className="text-xs text-blue-700 mb-4">Use these to sign in if you already have an account:</p>
+          <div className="space-y-3">
+            <div className="bg-white rounded p-3 border border-blue-200">
+              <p className="text-xs text-gray-500 font-semibold mb-1">Phone</p>
+              <p className="text-sm font-mono text-gray-800">+91 9876543210</p>
+            </div>
+            <div className="bg-white rounded p-3 border border-blue-200">
+              <p className="text-xs text-gray-500 font-semibold mb-1">Password</p>
+              <p className="text-sm font-mono text-gray-800">password123</p>
+            </div>
+            <div className="border-t border-blue-200 pt-3">
+              <p className="text-xs text-gray-500 mb-1">Or try email:</p>
+              <p className="text-xs font-mono text-gray-700">teacher@example.com</p>
+              <p className="text-xs font-mono text-gray-700">password123</p>
+            </div>
+            <Link to="/signin" className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white rounded font-medium py-2 transition-colors text-sm mt-3">
+              Go to Sign In →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-2/3 max-w-2xl card shadow-xl border border-gray-100">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-[var(--color-primary)]">Register as a Teacher</h2>
           <p className="text-sm text-gray-500 mt-2">Join 9.7M teachers on Shiksha Saathi</p>
@@ -97,6 +123,15 @@ const RegisterPage = () => {
             </button>
           </div>
         </form>
+
+        <div className="mt-8 lg:hidden bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm font-semibold text-blue-900 mb-3">🎯 Already have demo credentials?</p>
+          <p className="text-xs text-gray-700 mb-2"><strong>Phone:</strong> +91 9876543210 | <strong>Pass:</strong> password123</p>
+          <p className="text-xs text-gray-700 mb-4"><strong>Email:</strong> teacher@example.com | <strong>Pass:</strong> password123</p>
+          <Link to="/signin" className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white rounded font-medium py-2 text-sm transition-colors">
+            Sign In Now
+          </Link>
+        </div>
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account? <Link to="/signin" className="text-[var(--color-primary)] font-medium hover:underline">Sign In</Link>
