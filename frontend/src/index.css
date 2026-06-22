@@ -10,7 +10,16 @@
   --color-brand-accent: #e85d26;
   --color-brand-green: #2a7d4f;
   --color-brand-purple: #7c3aed;
+  --color-primary: #1a3a5c;
+  --color-accent: #e85d26;
+  --color-background: #F5F5F5;
   --font-inter: "Inter", sans-serif;
+}
+
+:root {
+  --color-primary: #1a3a5c;
+  --color-accent: #e85d26;
+  --color-background: #F5F5F5;
 }
 
 body {

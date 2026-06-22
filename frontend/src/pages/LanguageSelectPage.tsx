@@ -29,13 +29,12 @@ const LanguageSelectPage = () => {
     try {
       setLanguage(code);
       localStorage.setItem('shiksha_language_selected', 'true');
-      await api.put('/user/language', { language: code });
       toast.success("Language preference saved!");
       
       if (isModal) {
         navigate(-1);
       } else {
-        navigate('/dashboard/timeline');
+        navigate('/register');
       }
     } catch (err) {
       toast.error("Failed to save language. Please try again.");

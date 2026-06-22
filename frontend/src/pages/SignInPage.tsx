@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import api from '../api/client';
+import { mockLogin } from '../api/mockAuth';
 import toast from 'react-hot-toast';
 
 const SignInPage = () => {
@@ -14,17 +14,8 @@ const SignInPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await api.post('/auth/login', formData);
-      // Mock user data for demo
-      const user = {
-        fullName: "Demo Teacher",
-        emailOrPhone: formData.emailOrPhone,
-        state: "Maharashtra",
-        subject: "Maths",
-        grade: "5",
-        schoolType: "Government"
-      };
-      login(res.data.token, user);
+      const { token, user } = await mockLogin(formData.emailOrPhone, formData.password);
+      login(token, user);
       toast.success("Login successful!");
       
       if (!localStorage.getItem('shiksha_language_selected')) {
@@ -33,15 +24,48 @@ const SignInPage = () => {
         navigate('/dashboard/timeline');
       }
     } catch (err) {
-      toast.error("Login failed. Please try again.");
+      toast.error(err instanceof Error ? err.message : "Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12 bg-gray-50">
-      <div className="max-w-md w-full card shadow-xl border border-gray-100">
+    <div className="min-h-[calc(100vh-140px)] flex gap-6 px-4 py-12 bg-gray-50">
+      {/* Demo Credentials Info */}
+      <div className="hidden lg:flex lg:w-1/3 flex-col gap-6">
+        <div className="card shadow-lg border border-gray-100 bg-green-50 border-green-200 p-6 rounded-lg h-fit sticky top-20">
+          <h3 className="text-lg font-bold text-green-900 mb-4">🎯 Quick Demo Access</h3>
+          
+          <div className="space-y-3 mb-4">
+            <div className="bg-white rounded p-3 border border-green-200">
+              <p className="text-xs text-gray-500 font-semibold mb-1">Phone Number</p>
+              <p className="text-sm font-mono text-gray-800">+91 9876543210</p>
+            </div>
+            
+            <div className="bg-white rounded p-3 border border-green-200">
+              <p className="text-xs text-gray-500 font-semibold mb-1">Password</p>
+              <p className="text-sm font-mono text-gray-800">password123</p>
+            </div>
+          </div>
+
+          <div className="border-t border-green-200 pt-3 mb-3">
+            <p className="text-xs text-gray-500 font-semibold mb-2">Or try email:</p>
+            <p className="text-xs font-mono text-gray-700">teacher@example.com</p>
+            <p className="text-xs font-mono text-gray-700">password123</p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setFormData({ emailOrPhone: '+91 9876543210', password: 'password123' })}
+            className="w-full bg-green-600 hover:bg-green-700 text-white rounded font-medium py-2 transition-colors text-sm"
+          >
+            Fill Demo Credentials
+          </button>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-2/3 max-w-md card shadow-xl border border-gray-100">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-[var(--color-primary)]">Sign In</h2>
           <p className="text-sm text-gray-500 mt-2">Welcome back to Shiksha Saathi</p>
@@ -115,6 +139,19 @@ const SignInPage = () => {
         <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account? <Link to="/register" className="text-[var(--color-accent)] font-medium hover:underline">Register</Link>
         </p>
+
+        <div className="lg:hidden mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+          <p className="text-sm font-semibold text-green-900 mb-3">🎯 Quick Demo Access</p>
+          <p className="text-xs text-gray-700 mb-2"><strong>Phone:</strong> +91 9876543210</p>
+          <p className="text-xs text-gray-700 mb-3"><strong>Password:</strong> password123</p>
+          <button
+            type="button"
+            onClick={() => setFormData({ emailOrPhone: '+91 9876543210', password: 'password123' })}
+            className="w-full bg-green-600 hover:bg-green-700 text-white rounded font-medium py-2 text-sm transition-colors"
+          >
+            Fill & Sign In
+          </button>
+        </div>
       </div>
     </div>
   );
