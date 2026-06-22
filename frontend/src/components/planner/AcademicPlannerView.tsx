@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { DEMO_PLANS, CLASS_SUBJECT_OPTIONS, type AcademicPlan, type Chapter, type Topic } from '../../data/academicPlannerData';
-import { ClipboardList, BookOpen, AlertTriangle, Lightbulb, FileText, RefreshCw, ChevronDown, ChevronRight, CheckCircle, Clock, AlertCircle, BarChart3, Plus, GraduationCap, Target, Calendar, Layers, ArrowLeft } from 'lucide-react';
+import { DEMO_PLANS, CLASS_SUBJECT_OPTIONS, type AcademicPlan } from '../../data/academicPlannerData';
+import { ClipboardList, BookOpen, AlertTriangle, Lightbulb, FileText, RefreshCw, ChevronDown, ChevronRight, CheckCircle, Clock, AlertCircle, BarChart3, Plus, GraduationCap, Target, Calendar, Layers } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 type TabId = 'plan' | 'difficulties' | 'strategies' | 'assessments' | 'revision';
@@ -447,7 +447,7 @@ const AcademicPlannerView = () => {
               <div className="relative">
                 <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block"></div>
                 <div className="space-y-6">
-                  {activePlan.assessments.map((a, idx) => (
+                  {activePlan.assessments.map((a) => (
                     <div key={a.id} className="relative pl-0 md:pl-12">
                       <div className="hidden md:block absolute left-2.5 top-2 w-3 h-3 rounded-full bg-white border-2 border-[var(--color-primary)]"></div>
                       <div className={`border rounded-lg p-4 ${a.status === 'completed' ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}`}>

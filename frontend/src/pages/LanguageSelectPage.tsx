@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
-import api from '../api/client';
 import toast from 'react-hot-toast';
 
 const LanguageSelectPage = () => {
