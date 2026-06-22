@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/client';
+import { mockRegister } from '../api/mockAuth';
+import { useAuth } from '../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
@@ -10,24 +11,55 @@ const RegisterPage = () => {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post('/auth/register', formData);
+      const { token, user } = await mockRegister(formData);
+      login(token, user);
       toast.success("Registration successful! Welcome to Shiksha Saathi.");
-      navigate('/signin');
+      navigate('/language-select');
     } catch (err) {
-      toast.error("Registration failed.");
+      toast.error(err instanceof Error ? err.message : "Registration failed.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12 bg-gray-50">
-      <div className="max-w-2xl w-full card shadow-xl border border-gray-100">
+    <div className="min-h-[calc(100vh-140px)] flex gap-6 px-4 py-12 bg-gray-50">
+      {/* Demo Credentials Info */}
+      <div className="hidden lg:flex lg:w-1/3 flex-col gap-6">
+        <div className="card shadow-lg border border-gray-100 bg-blue-50 border-blue-200 p-6 rounded-lg h-fit sticky top-20">
+          <h3 className="text-lg font-bold text-blue-900 mb-4">🎯 Try Demo Login</h3>
+          
+          <div className="space-y-4">
+            <div className="bg-white rounded p-4 border border-blue-200">
+              <p className="text-xs text-gray-500 font-semibold mb-2">Option 1: Phone</p>
+              <p className="text-sm font-mono text-gray-800">📱 +91 9876543210</p>
+              <p className="text-sm font-mono text-gray-800 mt-1">🔑 password123</p>
+            </div>
+            
+            <div className="bg-white rounded p-4 border border-blue-200">
+              <p className="text-xs text-gray-500 font-semibold mb-2">Option 2: Email</p>
+              <p className="text-sm font-mono text-gray-800">📧 teacher@example.com</p>
+              <p className="text-sm font-mono text-gray-800 mt-1">🔑 password123</p>
+            </div>
+            
+            <button
+              type="button"
+              onClick={() => navigate('/signin')}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded font-medium py-2 transition-colors text-sm"
+            >
+              Go to Sign In →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-2/3 max-w-2xl card shadow-xl border border-gray-100">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-[var(--color-primary)]">Register as a Teacher</h2>
           <p className="text-sm text-gray-500 mt-2">Join 9.7M teachers on Shiksha Saathi</p>
@@ -95,7 +127,16 @@ const RegisterPage = () => {
           </div>
         </form>
 
-        <p className="mt-8 text-center text-sm text-gray-600">
+        <div className="mt-8 lg:hidden bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm font-semibold text-blue-900 mb-3">🎯 Try Demo Login Instead</p>
+          <p className="text-xs text-gray-700 mb-3"><strong>Phone:</strong> +91 9876543210 | <strong>Pass:</strong> password123</p>
+          <p className="text-xs text-gray-700 mb-4"><strong>Email:</strong> teacher@example.com | <strong>Pass:</strong> password123</p>
+          <Link to="/signin" className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white rounded font-medium py-2 text-sm transition-colors">
+            Sign In Now
+          </Link>
+        </div>
+
+        <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account? <Link to="/signin" className="text-[var(--color-primary)] font-medium hover:underline">Sign In</Link>
         </p>
       </div>

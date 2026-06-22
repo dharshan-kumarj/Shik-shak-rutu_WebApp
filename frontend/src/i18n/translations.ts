@@ -1,6 +1,7 @@
 export const translations = {
   en: {
     nav_timeline: "Growth Timeline",
+    nav_planner: "Academic Planner",
     nav_journal: "Reflection Journal",
     nav_resources: "Resource Shelf",
     nav_chat: "Deep Coaching",
@@ -15,6 +16,7 @@ export const translations = {
   },
   hi: {
     nav_timeline: "विकास समयरेखा",
+    nav_planner: "शैक्षणिक योजनाकार",
     nav_journal: "चिंतन पत्रिका",
     nav_resources: "संसाधन शेल्फ",
     nav_chat: "गहन कोचिंग",
