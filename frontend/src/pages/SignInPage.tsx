@@ -130,10 +130,13 @@ const SignInPage = () => {
 
         <button
           type="button"
-          onClick={() => navigate('/demo')}
-          className="mt-2 w-full border border-gray-300 text-gray-700 rounded-md font-medium py-2 text-sm flex justify-center items-center gap-2 hover:bg-gray-50 transition-colors"
+          onClick={() => {
+            setFormData({ emailOrPhone: '+91 9876543210', password: 'password123' });
+            toast.success("Demo credentials filled! Click Sign In to continue.");
+          }}
+          className="mt-2 w-full border border-[var(--color-accent)] text-[var(--color-accent)] rounded-md font-medium py-2 text-sm flex justify-center items-center gap-2 hover:bg-orange-50 transition-colors"
         >
-          🎯 Try Demo — No login needed
+          🎯 Fill Demo Credentials
         </button>
 
         <p className="mt-6 text-center text-sm text-gray-600">

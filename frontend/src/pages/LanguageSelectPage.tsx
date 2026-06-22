@@ -28,12 +28,11 @@ const LanguageSelectPage = () => {
     try {
       setLanguage(code);
       localStorage.setItem('shiksha_language_selected', 'true');
-      toast.success("Language preference saved!");
       
       if (isModal) {
         navigate(-1);
       } else {
-        navigate('/register');
+        navigate('/dashboard/timeline');
       }
     } catch (err) {
       toast.error("Failed to save language. Please try again.");
