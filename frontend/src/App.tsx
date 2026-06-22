@@ -20,8 +20,6 @@ import { TeacherProvider } from './context/TeacherContext';
 import Layout from './components/Layout';
 import WhatsAppPage from './components/WhatsAppPage';
 import CallPage from './components/CallPage';
-import DemoPage from './pages/DemoPage';
-
 function App() {
   return (
     <BrowserRouter>
@@ -41,8 +39,6 @@ function App() {
                 <Route path="/dashboard/*" element={<DashboardPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
               </Route>
-
-              <Route path="/demo" element={<DemoPage />} />
 
               <Route element={<Layout />}>
                 <Route path="/whatsapp" element={<WhatsAppPage />} />

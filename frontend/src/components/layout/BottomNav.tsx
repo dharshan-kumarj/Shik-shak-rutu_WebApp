@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
-import { Activity, BookOpen, Layers, MessageCircle, Users, ClipboardList } from 'lucide-react';
+import { Activity, BookOpen, Layers, MessageCircle, Users, ClipboardList, Smartphone } from 'lucide-react';
 
 const BottomNav = () => {
   const { t } = useLanguage();
@@ -9,6 +9,7 @@ const BottomNav = () => {
   const tabs = [
     { name: t('nav_timeline'), path: '/dashboard/timeline', icon: Activity },
     { name: t('nav_planner'), path: '/dashboard/planner', icon: ClipboardList },
+    { name: t('nav_simulation'), path: '/dashboard/simulation', icon: Smartphone },
     { name: t('nav_journal'), path: '/dashboard/journal', icon: BookOpen },
     { name: t('nav_resources'), path: '/dashboard/resources', icon: Layers },
     { name: t('nav_chat'), path: '/dashboard/chat', icon: MessageCircle },
